@@ -112,7 +112,14 @@ if [ "$GPU_AVAILABLE" = true ]; then
 
     # Start minikube with GPU support.
     echo "Starting minikube with GPU support..."
-    minikube start --memory="${MINIKUBE_MEM}" --driver=docker --container-runtime=docker --gpus=all --force --addons=nvidia-device-plugin
+    HTTP_PROXY='http://192.168.123.118:7897'
+    HTTPS_PROXY='http://192.168.123.118:7897'
+    NO_PROXY='localhost,127.0.0.1,10.96.0.0/12,192.168.0.0/16,.svc,.cluster.local'
+    echo "$HTTP_PROXY"
+    minikube start --memory="${MINIKUBE_MEM}" --driver=docker --container-runtime=docker --gpus=all --force --addons=nvidia-device-plugin \
+      --docker-env HTTP_PROXY="$HTTP_PROXY" \
+      --docker-env HTTPS_PROXY="$HTTPS_PROXY" \
+      --docker-env NO_PROXY="$NO_PROXY"
 
     # Update kubeconfig context.
     echo "Updating kubeconfig context..."

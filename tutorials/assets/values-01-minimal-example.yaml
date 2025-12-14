@@ -11,3 +11,18 @@ servingEngineSpec:
     requestCPU: 6
     requestMemory: "16Gi"
     requestGPU: 1
+    env:
+      - name: HTTP_PROXY
+        value: "http://192.168.123.118:7897"
+      - name: HTTPS_PROXY
+        value: "http://192.168.123.118:7897"
+      - name: NO_PROXY
+        value: "localhost,127.0.0.1,10.96.0.0/12,192.168.0.0/16,.svc,.cluster.local"
+
+routerSpec:
+  resources:
+    requests:
+      cpu: "400m"
+      memory: "500Mi"
+    limits:
+      memory: "2Gi"
