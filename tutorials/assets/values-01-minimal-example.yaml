@@ -11,3 +11,11 @@ servingEngineSpec:
     requestCPU: 6
     requestMemory: "16Gi"
     requestGPU: 1
+
+routerSpec:
+  resources:
+    requests:
+      cpu: "400m"
+      memory: "500Mi"
+    limits:
+      memory: "2Gi"

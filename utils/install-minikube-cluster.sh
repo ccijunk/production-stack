@@ -118,11 +118,14 @@ if [ "$GPU_AVAILABLE" = true ]; then
     echo "Updating kubeconfig context..."
     minikube update-context
 
+    # echo "restore images"
+    # bash ../images_cache/restore.sh
+
     # Install the GPU Operator via Helm.
-    echo "Adding NVIDIA helm repo and updating..."
-    helm repo add nvidia https://helm.ngc.nvidia.com/nvidia && helm repo update
-    echo "Installing GPU Operator..."
-    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.1
+    # echo "Adding NVIDIA helm repo and updating..."
+    # helm repo add nvidia https://helm.ngc.nvidia.com/nvidia && helm repo update
+    # echo "Installing GPU Operator..."
+    # helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.1
 else
     # No GPU: Start minikube without GPU support.
     echo "Starting minikube without GPU support..."
